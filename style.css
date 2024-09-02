@@ -1,15 +1,67 @@
-.color1 {
-  background-color: #262f40;
+/* 
+ #262f40 Темно-синий цвет  
+ #f9c127 Ярко-желтый цвет  
+ #889bbf Синий серо-голубой  
+ #bfb488 Бежевый цвет  
+ */
+body {
+  font-family: 'Roboto', sans-serif;
+  /* background-color: #262f40; Темно-синий фон страницы */
+  border: 2px solid;
+  border-color: #262f40;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #f9c127; /* Ярко-желтый текст */
+}
+.container {
+  background-color: #ffffff; /* Белый фон контейнера */
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
 }
 
-.color2 {
-  background-color: #f9c127;
+.container h1 {
+  color: #262f40; /* Темно-синий заголовок */
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 500;
 }
 
-.color3 {
-  background-color: #889bbf;
+input[type='date'] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #889bbf; /* Светло-синий цвет границы */
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 16px;
+  margin-bottom: 20px;
 }
 
-.color4 {
-  background-color: #bfb488;
+button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 10px;
+  background-color: #f9c127; /* Ярко-желтый фон кнопки */
+  color: #262f40; /* Темно-синий текст кнопки */
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #bfb488; /* Бежевый фон кнопки при наведении */
+}
+
+.result {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #262f40; /* Темно-синий цвет текста результата */
 }
