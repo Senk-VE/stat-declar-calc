@@ -11,18 +11,23 @@
     />
   </head>
   <body>
+    <script src="script_rate.js"></script>
+    <script src="./calc.js"></script>
+
     <div class="container">
       <h1>Выберите дату</h1>
       <input type="date" id="dateInput" />
       <button onclick="displayDate()">Подтвердить</button>
       <div class="result" id="result"></div>
     </div>
-    <script src="./calc.js"></script>
     <div class="container">
-      <h1>Выберите дату</h1>
-      <input type="date" id="dateInput" />
-      <button onclick="displayDate()">Подтвердить</button>
-      <div class="result" id="result"></div>
+      <!-- Форма для ввода даты -->
+      <label for="date">Выберите дату:</label>
+      <input type="date" id="dateCur" name="date" />
+      <button onclick="getCurrency()">Получить курс</button>
+
+      <!-- Место для вывода курса -->
+      <p id="rate"></p>
     </div>
   </body>
 </html>
