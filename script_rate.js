@@ -17,7 +17,7 @@ function getCurrency() {
 
   console.log('API URL:', url); // Логируем URL для проверки
 
-  // Отправляем запрос
+  // Отправляем запросRB
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
