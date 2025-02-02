@@ -10,17 +10,16 @@ body {
   align-items: flex-start; /* Позиционирование по верхнему краю */
   flex-wrap: wrap; /* Разрешаем перенос контейнеров */
   font-family: 'Roboto', sans-serif;
-  /* background-color: #262f40; Темно-синий фон страницы */
   border: 2px solid;
   border-color: #262f40;
   margin: 0;
   padding: 0;
-  display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   color: #f9c127; /* Ярко-желтый текст */
 }
+
 .container {
   background-color: #ffffff; /* Белый фон контейнера */
   padding: 30px;
@@ -29,11 +28,6 @@ body {
   text-align: center;
   max-width: 400px;
   width: 100%;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap; */
 }
 
 .container h1 {
@@ -54,7 +48,7 @@ input[type='date'] {
 }
 
 button {
-  padding: 12px 25px;
+  padding: 8px 25px;
   border: none;
   border-radius: 10px;
   background-color: #f9c127; /* Ярко-желтый фон кнопки */
@@ -73,4 +67,55 @@ button:hover {
   margin-top: 20px;
   font-size: 16px;
   color: #262f40; /* Темно-синий цвет текста результата */
+}
+
+/* Контейнер для поля суммы и валюты (расположение в одну строку) */
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px; /* Отступ между полями */
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#amount {
+  flex: 1; /* Поле суммы занимает все доступное пространство */
+  max-width: 180px; /* Максимальная ширина */
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #889bbf;
+  border-radius: 6px;
+}
+
+#currencySelect {
+  padding: 8px;
+  border: 1px solid #889bbf;
+  border-radius: 6px;
+  font-size: 16px;
+  width: auto; /* Автоматическая ширина */
+  min-width: 100px; /* Минимальная ширина */
+  max-width: 140px; /* Максимальная ширина */
+  white-space: nowrap; /* Запрещает перенос строк */
+}
+
+/* Выравниваем кнопки */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Расстояние между кнопками */
+  margin-top: 10px; /* Отступ сверху от поля ввода */
+}
+
+#addButton,
+#clearButton {
+  padding: 8px 25px;
+  font-size: 20px;
+}
+
+#resultContainer {
+  margin-top: 15px; /* Добавляет отступ сверху */
+  font-size: 1rem; /* Немного увеличиваем размер шрифта */
+  color: #f9c127; /* Темно-синий цвет */
+  text-align: center; /* Центрируем текст */
 }
