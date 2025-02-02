@@ -11,10 +11,15 @@ document.getElementById('amount').addEventListener('input', function (event) {
 
 document.getElementById('addButton').addEventListener('click', () => {
   const amount = parseFloat(document.getElementById('amount').value); // Преобразуем в число
-  const currency = document.getElementById('currencySelect').value;
+  const currencySelect = document.getElementById('currencySelect');
+  const currencyValue = currencySelect.value;
+  const currencyText =
+    currencySelect.options[currencySelect.selectedIndex].textContent.split(
+      ' '
+    )[0]; // Получаем текст до скобок
 
   console.log('Введенная сумма:', amount);
-  console.log('Выбранная валюта:', currency);
+  console.log('Выбранная валюта:', currencyText);
 
   if (!amount || amount <= 0) {
     alert('Пожалуйста, введите корректную сумму!');
@@ -22,7 +27,7 @@ document.getElementById('addButton').addEventListener('click', () => {
   }
 
   // Добавляем новый результат в массив
-  results.push(`${amount} ${currency}`);
+  results.push(`${amount} ${currencyText}`);
 
   // Обновляем строку с результатами
   const resultText = `Сумма: ${results.join(', ')}`;
@@ -39,9 +44,8 @@ document.getElementById('addButton').addEventListener('click', () => {
   // Отображаем строку с результатами
   resultContainer.textContent = resultText;
 
-  // Очищаем поля
+  // Очищаем поле суммы, но оставляем выбранную валюту
   document.getElementById('amount').value = '';
-  document.getElementById('currencySelect').value = 'USD';
 });
 
 // Обработчик для кнопки "Очистить"

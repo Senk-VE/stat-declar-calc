@@ -107,10 +107,38 @@ button:hover {
   margin-top: 10px; /* Отступ сверху от поля ввода */
 }
 
+/* Стили для кнопок-значков */
+.icon-button {
+  padding: 10px;
+  font-size: 24px; /* Размер значков */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #262f40; /* Темно-синий цвет текста */
+  transition: color 0.3s ease;
+}
+
+.icon-button:hover {
+  color: #f9c127; /* Ярко-желтый цвет при наведении */
+}
+
+/* Стили для всех кнопок "Добавить", "Очистить", "Подтвердить", чтобы они стали идентичными */
+button,
 #addButton,
 #clearButton {
-  padding: 8px 25px;
-  font-size: 20px;
+  padding: 8px 25px; /* Используем точно такие же размеры, как у кнопки "Подтвердить" */
+  font-size: 20px; /* Используем тот же размер шрифта, как у кнопки "Подтвердить" */
+  font-weight: 500; /* Используем тот же стиль шрифта */
+  background-color: #f9c127; /* Ярко-желтый фон */
+  color: #262f40; /* Темно-синий цвет текста */
+  border-radius: 10px; /* Радиус скругления одинаковый */
+  border: none; /* Убираем рамки */
+}
+
+button:hover,
+#addButton:hover,
+#clearButton:hover {
+  background-color: #bfb488; /* Бежевый фон при наведении */
 }
 
 #resultContainer {
@@ -118,4 +146,26 @@ button:hover {
   font-size: 1rem; /* Немного увеличиваем размер шрифта */
   color: #f9c127; /* Темно-синий цвет */
   text-align: center; /* Центрируем текст */
+}
+
+/* Сделаем контейнер для поля суммы и валюты с кнопками на одной строке */
+.input-container-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.input-container-buttons .icon-button {
+  font-size: 24px;
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #262f40; /* Темно-синий цвет текста */
+  transition: color 0.3s ease;
+}
+
+.input-container-buttons .icon-button:hover {
+  color: #f9c127; /* Ярко-желтый цвет при наведении */
 }
