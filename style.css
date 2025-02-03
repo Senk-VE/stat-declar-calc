@@ -4,30 +4,29 @@
  #889bbf Синий серо-голубой  
  #bfb488 Бежевый цвет  
  */
+/* Убираем display: flex; из body, чтобы блоки располагались один под другим */
 body {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start; /* Позиционирование по верхнему краю */
-  flex-wrap: wrap; /* Разрешаем перенос контейнеров */
-  font-family: 'Roboto', sans-serif;
-  border: 2px solid;
-  border-color: #262f40;
+  display: flex; /* Включаем Flexbox */
+  justify-content: center; /* Выравниваем содержимое по горизонтали */
+  align-items: center; /* Выравниваем содержимое по вертикали */
+  flex-direction: column; /* Располагаем контейнеры в колонку */
+  height: 100vh; /* Используем всю высоту окна браузера */
   margin: 0;
   padding: 0;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   color: #f9c127; /* Ярко-желтый текст */
+  border: 2px solid;
+  border-color: #262f40;
 }
 
 .container {
-  background-color: #ffffff; /* Белый фон контейнера */
+  background-color: #ffffff;
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   max-width: 400px;
   width: 100%;
+  margin-bottom: 20px; /* Добавляем немного отступа снизу, чтобы было пространство между контейнерами */
 }
 
 .container h1 {
