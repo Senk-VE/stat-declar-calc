@@ -18,7 +18,35 @@ async function fetchExchangeRate(currency, date) {
   if (currency === 'BYN') return 1; // BYN не требует конвертации
 
   const formattedDate = new Date(date).toISOString().split('T')[0];
-  const url = `https://api.nbrb.by/exrates/rates/${currencyIds[currency]}?ondate=${formattedDate}&periodicity=0`;
+
+  let currencyId = currencyIds[currency];
+
+  // Устанавливаем правильный Cur_ID в зависимости от валюты и даты
+  if (currency === 'USD') {
+    if (new Date(formattedDate) < new Date('2021-07-09')) {
+      currencyId = 145; // Для периода до 2021-07-09
+    } else {
+      currencyId = 431; // Для периода с 2021-07-09
+    }
+  } else if (currency === 'EUR') {
+    if (new Date(formattedDate) < new Date('2016-07-01')) {
+      currencyId = 19; // Для периода до 2016-07-01
+    } else if (new Date(formattedDate) < new Date('2021-07-09')) {
+      currencyId = 292; // Для периода с 2016-07-01 до 2021-07-09
+    } else {
+      currencyId = 451; // Для периода с 2021-07-09
+    }
+  } else if (currency === 'RUR') {
+    if (new Date(formattedDate) < new Date('2016-07-01')) {
+      currencyId = 190; // Для периода до 2016-07-01
+    } else if (new Date(formattedDate) < new Date('2021-07-09')) {
+      currencyId = 298; // Для периода с 2016-07-01 до 2021-07-09
+    } else {
+      currencyId = 456; // Для периода с 2021-07-09
+    }
+  }
+
+  const url = `https://api.nbrb.by/exrates/rates/${currencyId}?ondate=${formattedDate}&periodicity=0`;
 
   try {
     const response = await fetch(url);
@@ -40,63 +68,42 @@ async function fetchEURRate(date) {
 
 amountInput.addEventListener('input', function (event) {
   let value = event.target.value;
-  // Регулярное выражение поддерживает и точку, и запятую как десятичный разделитель
   let regex = /^(0|[1-9]\d*)([.,]?\d{0,2})?$/;
-
   if (!regex.test(value)) {
-    event.target.value = value.slice(0, -1); // Оставляем только корректные символы
+    event.target.value = value.slice(0, -1);
   }
 });
 
 addButton.addEventListener('click', () => {
-  // Заменяем запятую на точку для корректного преобразования в число
   let amount = amountInput.value.replace(',', '.');
-
-  // Преобразуем в число
   amount = parseFloat(amount);
 
-  const currencyValue = currencySelect.value;
+  const decimalPart = amountInput.value.split('.')[1];
+  if (decimalPart && decimalPart.length > 2) {
+    const confirmAction = confirm(
+      'Вы уверены? Введенная сумма имеет больше двух знаков после запятой.'
+    );
+    if (!confirmAction) return;
+  }
+
   const currencyText =
     currencySelect.options[currencySelect.selectedIndex].textContent.split(
       ' '
-    )[0]; // Получаем текст до скобок
-
-  console.log('Введенная сумма:', amount);
-  console.log('Выбранная валюта:', currencyText);
+    )[0];
 
   if (Number.isNaN(amount) || amount <= 0) {
     alert('Пожалуйста, введите корректную сумму!');
     return;
   }
 
-  // Добавляем новый результат в массив
   results.push(`${amount} ${currencyText}`);
-
-  // Обновляем строку с результатами
-  const resultText = `Сумма: ${results.join('<br>')}`;
-
-  console.log('Результат:', resultText);
-
-  if (!resultContainer) {
-    console.error('Контейнер для результата не найден!');
-    return;
-  }
-
-  // Отображаем строку с результатами
-  resultContainer.innerHTML = resultText;
-
-  // Очищаем поле суммы, но оставляем выбранную валюту
+  resultContainer.textContent = `Сумма: ${results.join(', ')}`; // Обновляем все суммы в одной строке
   amountInput.value = '';
 });
 
-// Обработчик для кнопки "Очистить"
 clearButton.addEventListener('click', () => {
-  // Очищаем массив результатов
   results = [];
-
-  // Очищаем текст в контейнере
-  resultContainer.innerHTML = ''; // Очищаем все ранее отображенные результаты
-
+  resultContainer.innerHTML = '';
   console.log('Результаты очищены');
 });
 
@@ -105,6 +112,12 @@ doneButton.addEventListener('click', async () => {
   if (!date) {
     alert('Пожалуйста, выберите дату!');
     return;
+  }
+
+  if (new Date(date) < new Date('2016-07-01')) {
+    alert(
+      'Расчетные данные могут быть некорректными, ввиду деноминации белорусского рубля с 01.07.2016'
+    );
   }
 
   let totalBYN = 0;
@@ -116,18 +129,12 @@ doneButton.addEventListener('click', async () => {
     }
   }
 
-  // Получаем курс EUR по выбранной дате
   const eurRate = await fetchEURRate(date);
   if (eurRate === null) {
     alert('Не удалось получить курс EUR для конвертации!');
     return;
   }
 
-  // Конвертируем сумму в EUR
   const totalEUR = totalBYN / eurRate;
-
-  // Отображаем результат только в EUR
-  resultContainer.innerHTML += `
-    <p>Итого в EUR: ${totalEUR.toFixed(2)} EUR</p>
-  `;
+  resultContainer.innerHTML += `<p>Итого в EUR: ${totalEUR.toFixed(2)} EUR</p>`;
 });
