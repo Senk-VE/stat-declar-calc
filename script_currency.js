@@ -136,5 +136,16 @@ doneButton.addEventListener('click', async () => {
   }
 
   const totalEUR = totalBYN / eurRate;
-  resultContainer.innerHTML += `<p>Итого в EUR: ${totalEUR.toFixed(2)} EUR</p>`;
+
+  // Ищем элемент, который уже отображает результат "Итого в EUR"
+  let totalEURResult = document.querySelector('.total-eur');
+  if (totalEURResult) {
+    // Если такой элемент есть, обновляем его содержимое
+    totalEURResult.textContent = `Итого: ${totalEUR.toFixed(2)} EUR`;
+  } else {
+    // Если нет, создаем новый элемент
+    resultContainer.innerHTML += `<p class="total-eur">Итого: ${totalEUR.toFixed(
+      2
+    )} EUR</p>`;
+  }
 });
