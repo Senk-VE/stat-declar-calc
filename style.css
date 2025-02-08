@@ -4,7 +4,6 @@
  #889bbf Синий серо-голубой  
  #bfb488 Бежевый цвет  
  */
-/* Убираем display: flex; из body, чтобы блоки располагались один под другим */
 body {
   display: flex; /* Включаем Flexbox */
   justify-content: flex-start; /* Выравниваем содержимое по горизонтали */
@@ -14,7 +13,7 @@ body {
   margin: 0;
   padding: 0;
   color: #f9c127; /* Ярко-желтый текст */
-  border: 2px solid;
+  /* border: 2px solid; */ /* убрано, так как при 175% увеличения в хроме отображается неправильно */
   border-color: #262f40;
 }
 
@@ -22,7 +21,7 @@ body {
   background-color: #ffffff;
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
   max-width: 400px;
   width: 100%;
@@ -44,24 +43,6 @@ input[type='date'] {
   box-sizing: border-box;
   font-size: 16px;
   margin-bottom: 20px;
-}
-
-/* Обновленные стили для кнопок */
-button {
-  padding: 8px 25px;
-  border: none;
-  border-radius: 10px;
-  background-color: #f9c127; /* Ярко-желтый фон кнопки */
-  color: #262f40; /* Темно-синий текст кнопки */
-  font-size: 20px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
-  line-height: 1.5; /* Добавляем одинаковое межстрочное расстояние для всех кнопок */
-}
-
-button:hover {
-  background-color: #bfb488; /* Бежевый фон кнопки при наведении */
 }
 
 .result {
@@ -121,6 +102,7 @@ button,
   border-radius: 10px; /* Радиус скругления одинаковый */
   border: none; /* Убираем рамки */
   line-height: 1.5; /* Добавляем одинаковое межстрочное расстояние для всех кнопок */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 button:hover,
@@ -130,7 +112,7 @@ button:hover,
 }
 
 #resultContainer {
-  padding-top: 0.5rem;
+  padding-top: 1rem;
   font-size: 16px;
   font-family: Arial, sans-serif;
   color: #888888;
@@ -140,9 +122,22 @@ button:hover,
 .total-eur {
   font-size: 18px;
   font-weight: bold;
-  color: #262f40; /* темный синий оттенок */
-  margin-top: 10px;
-  background-color: #e1ecf7; /* Светлый фон */
-  padding: 5px;
-  border-radius: 5px;
+  color: #1e3a5f; /* Глубокий темно-синий оттенок */
+  margin-top: 30px;
+  background-color: #d6e4f3; /* Нежно-голубой фон */
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для "Итого в BYN" */
+.total-byn {
+  font-size: 18px;
+  font-weight: bold;
+  color: #6e715e; /* Темно-оливковый оттенок */
+  margin-top: 20px;
+  background-color: #ebe8df; /* Теплый пастельный желтый */
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

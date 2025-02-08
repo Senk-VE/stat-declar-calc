@@ -139,13 +139,21 @@ doneButton.addEventListener('click', async () => {
 
   // Ищем элемент, который уже отображает результат "Итого в EUR"
   let totalEURResult = document.querySelector('.total-eur');
+  let totalBYNResult = document.querySelector('.total-byn');
+
   if (totalEURResult) {
-    // Если такой элемент есть, обновляем его содержимое
     totalEURResult.textContent = `Итого: ${totalEUR.toFixed(2)} EUR`;
   } else {
-    // Если нет, создаем новый элемент
     resultContainer.innerHTML += `<p class="total-eur">Итого: ${totalEUR.toFixed(
       2
     )} EUR</p>`;
+  }
+
+  if (totalBYNResult) {
+    totalBYNResult.textContent = `Итого: ${totalBYN.toFixed(2)} BYN`;
+  } else {
+    resultContainer.innerHTML += `<p class="total-byn">Итого: ${totalBYN.toFixed(
+      2
+    )} BYN</p>`;
   }
 });
