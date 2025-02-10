@@ -121,39 +121,57 @@ doneButton.addEventListener('click', async () => {
   }
 
   let totalBYN = 0;
+  let totalEUR = 0;
+  let totalUSD = 0;
+
+  // Конвертируем каждую сумму в BYN, округляем и затем пересчитываем в другие валюты
   for (const entry of results) {
     const [amount, currency] = entry.split(' ');
+
+    // Получаем курс для каждой валюты
     const exchangeRate = await fetchExchangeRate(currency, date);
     if (exchangeRate !== null) {
-      totalBYN += parseFloat(amount) * exchangeRate;
+      // Конвертируем сумму в BYN
+      let amountInBYN = parseFloat(amount) * exchangeRate;
+      amountInBYN = Math.round(amountInBYN * 100) / 100; // Округляем до 2 знаков
+
+      // Добавляем в общую сумму в BYN
+      totalBYN += amountInBYN;
+
+      // Теперь переводим в EUR и USD
+      const eurRate = await fetchEURRate(date);
+      if (eurRate !== null) {
+        totalEUR += amountInBYN / eurRate;
+        totalEUR = Math.round(totalEUR * 100) / 100; // Округляем до 2 знаков
+      }
+
+      const usdRate = await fetchExchangeRate('USD', date);
+      if (usdRate !== null) {
+        totalUSD += amountInBYN / usdRate;
+        totalUSD = Math.round(totalUSD * 100) / 100; // Округляем до 2 знаков
+      }
     }
   }
 
-  const eurRate = await fetchEURRate(date);
-  if (eurRate === null) {
-    alert('Не удалось получить курс EUR для конвертации!');
-    return;
-  }
-
-  const totalEUR = totalBYN / eurRate;
-
-  // Ищем элемент, который уже отображает результат "Итого в EUR"
+  // Выводим результаты
   let totalEURResult = document.querySelector('.total-eur');
   let totalBYNResult = document.querySelector('.total-byn');
+  let totalUSDResult = document.querySelector('.total-usd'); // Для USD
 
   if (totalEURResult) {
-    totalEURResult.textContent = `Итого: ${totalEUR.toFixed(2)} EUR`;
+    totalEURResult.textContent = `Итого: ${totalEUR} EUR`;
   } else {
-    resultContainer.innerHTML += `<p class="total-eur">Итого: ${totalEUR.toFixed(
-      2
-    )} EUR</p>`;
+    resultContainer.innerHTML += `<p class="total-eur">Итого: ${totalEUR} EUR</p>`;
   }
-
-  if (totalBYNResult) {
-    totalBYNResult.textContent = `Итого: ${totalBYN.toFixed(2)} BYN`;
+  // Добавляем результат для USD
+  if (totalUSDResult) {
+    totalUSDResult.textContent = `Итого: ${totalUSD} USD`;
   } else {
-    resultContainer.innerHTML += `<p class="total-byn">Итого: ${totalBYN.toFixed(
-      2
-    )} BYN</p>`;
+    resultContainer.innerHTML += `<p class="total-usd">Итого: ${totalUSD} USD</p>`;
+  }
+  if (totalBYNResult) {
+    totalBYNResult.textContent = `Итого: ${totalBYN} BYN`;
+  } else {
+    resultContainer.innerHTML += `<p class="total-byn">Итого: ${totalBYN} BYN</p>`;
   }
 });

@@ -13,11 +13,21 @@ body {
   margin: 0;
   padding: 0;
   color: #f9c127; /* Ярко-желтый текст */
-  /* border: 2px solid; */ /* убрано, так как при 175% увеличения в хроме отображается неправильно */
-  border-color: #262f40;
 }
-
-.container {
+.container_01 {
+  margin-top: 20px;
+  background-color: #ffffff;
+  padding: 30px;
+  padding-bottom: 70px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  margin-bottom: 20px;
+  height: 170px;
+}
+.container_02 {
   background-color: #ffffff;
   padding: 30px;
   border-radius: 8px;
@@ -25,10 +35,11 @@ body {
   text-align: center;
   max-width: 400px;
   width: 100%;
-  margin-bottom: 20px; /* Добавляем немного отступа снизу, чтобы было пространство между контейнерами */
+  margin-bottom: 20px;
 }
 
-.container h1 {
+.container_01 h1,
+.container_02 h1 {
   color: #262f40; /* Темно-синий заголовок */
   font-size: 24px;
   margin-bottom: 20px;
@@ -120,24 +131,33 @@ button:hover,
 
 /* Стили для "Итого в EUR" */
 .total-eur {
-  font-size: 18px;
+  font-size: 1.2rem;
   font-weight: bold;
-  color: #1e3a5f; /* Глубокий темно-синий оттенок */
+  color: #1e3a5f;
   margin-top: 30px;
-  background-color: #d6e4f3; /* Нежно-голубой фон */
-  padding: 12px;
+  background-color: #e4edf8;
+  padding: 0.3rem;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Стили для "Итого в BYN" */
+/* Стили для "Итого в BYN, USD, BYN" */
+.total-usd,
 .total-byn {
-  font-size: 18px;
+  font-size: 1.2rem;
   font-weight: bold;
-  color: #6e715e; /* Темно-оливковый оттенок */
-  margin-top: 20px;
-  background-color: #ebe8df; /* Теплый пастельный желтый */
-  padding: 12px;
+  margin-top: 0.1rem;
+  padding: 0.3rem;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.total-usd {
+  background-color: rgba(250, 242, 214, 0.5) /* 50% прозрачности */; /* Мягкий желтый с легким оттенком золотистого */
+  color: #2a3d3f; /* Темный оттенок серо-зеленого для контраста */
+}
+
+.total-byn {
+  background-color: rgba(181, 220, 151, 0.5);
+  color: #4a5d3b; /* Темно-зеленый цвет для текста, чтобы создать контраст */
 }
