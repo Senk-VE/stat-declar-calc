@@ -14,6 +14,9 @@ body {
   padding: 0;
   color: #f9c127; /* Ярко-желтый текст */
 }
+h1 {
+  margin: auto;
+}
 .container_01 {
   margin-top: 20px;
   background-color: #ffffff;
@@ -25,7 +28,7 @@ body {
   max-width: 400px;
   width: 100%;
   margin-bottom: 20px;
-  height: 170px;
+  height: 150px;
 }
 .container_02 {
   background-color: #ffffff;
@@ -57,9 +60,10 @@ input[type='date'] {
 }
 
 .result {
-  margin-top: 20px;
+  margin-top: 15px;
   font-size: 16px;
   font-family: Arial, sans-serif;
+  font-weight: 700;
   color: #262f40; /* Темно-синий цвет текста результата */
 }
 
@@ -74,16 +78,18 @@ input[type='date'] {
 }
 
 #amount {
-  flex: 1; /* Поле суммы занимает все доступное пространство */
-  max-width: 40%; /* Максимальная ширина */
-  padding: 5.5px;
+  flex: 1;
+  max-width: 90%;
+  padding: 3%;
   font-size: 16px;
   border: 1px solid #889bbf;
   border-radius: 6px;
 }
 
 #currencySelect {
-  padding: 5.5px;
+  flex: 1;
+  max-width: 10%;
+  padding: 3%;
   border: 1px solid #889bbf;
   border-radius: 6px;
   font-size: 15.5px;
@@ -120,6 +126,7 @@ button:hover,
 #addButton:hover,
 #clearButton:hover {
   background-color: #bfb488; /* Бежевый фон при наведении */
+  cursor: pointer;
 }
 
 #resultContainer {
@@ -160,4 +167,21 @@ button:hover,
 .total-byn {
   background-color: rgba(181, 220, 151, 0.5);
   color: #4a5d3b; /* Темно-зеленый цвет для текста, чтобы создать контраст */
+}
+@media (max-width: 768px) {
+  body {
+    padding: 0 10px;
+    justify-content: flex-start;
+  }
+
+  h1 {
+    font-size: 20px; /* Уменьшаем размер заголовков */
+  }
+
+  /* Уменьшаем размеры текста для других элементов */
+  .result,
+  #amount,
+  #currencySelect {
+    font-size: 14px;
+  }
 }

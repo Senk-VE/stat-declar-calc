@@ -103,7 +103,7 @@ const displayDate = () => {
 
     // Добавляем "крайний срок"
     result.innerHTML = `Выбранная дата: ${date.getDate()} ${monthAbbr} ${date.getFullYear()}<br>`;
-    result.innerHTML += `Крайний срок: ${deadlineFormatted}`;
+    result.innerHTML += `Срок подачи: ${deadlineFormatted}`;
   } else {
     result.textContent = 'Дата не выбрана';
   }
