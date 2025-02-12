@@ -68,37 +68,48 @@ async function fetchEURRate(date) {
 
 amountInput.addEventListener('input', function (event) {
   let value = event.target.value;
-  let regex = /^(0|[1-9]\d*)([.,]?\d{0,2})?$/;
-  if (!regex.test(value)) {
-    event.target.value = value.slice(0, -1);
-  }
+
+  // Заменяем запятую на точку только при вводе
+  value = value.replace(',', '.');
+
+  // Оставляем ввод как есть, если он соответствует формату (с двумя знаками после запятой)
+  event.target.value = value;
 });
 
 addButton.addEventListener('click', () => {
-  let amount = amountInput.value.replace(',', '.');
-  amount = parseFloat(amount);
+  let amounts = amountInput.value.split(','); // Разбиваем на отдельные суммы, если несколько чисел
+  let allValid = true;
 
-  const decimalPart = amountInput.value.split('.')[1];
-  if (decimalPart && decimalPart.length > 2) {
-    const confirmAction = confirm(
-      'Вы уверены? Введенная сумма имеет больше двух знаков после запятой.'
-    );
-    if (!confirmAction) return;
+  // Проверка, если поле пустое
+  if (amountInput.value.trim() === '') {
+    alert('Поле не может быть пустым!');
+    return; // Если поле пустое, прекращаем выполнение функции
   }
 
-  const currencyText =
-    currencySelect.options[currencySelect.selectedIndex].textContent.split(
-      ' '
-    )[0];
+  amounts.forEach((amount) => {
+    amount = amount.replace(',', '.'); // Заменяем запятую на точку
 
-  if (Number.isNaN(amount) || amount <= 0) {
-    alert('Пожалуйста, введите корректную сумму!');
-    return;
+    // Проверка на корректность формата
+    const decimalPart = amount.split('.')[1];
+    if (decimalPart && decimalPart.length > 2) {
+      allValid = false;
+      alert('Каждое число должно иметь не более двух знаков после запятой!');
+    }
+  });
+
+  // Если все числа корректны, добавляем их в список
+  if (allValid) {
+    amounts.forEach((amount) => {
+      const currencyText =
+        currencySelect.options[currencySelect.selectedIndex].textContent.split(
+          ' '
+        )[0];
+      results.push(`${amount} ${currencyText}`);
+    });
+
+    resultContainer.textContent = `Сумма: ${results.join(', ')}`;
+    amountInput.value = ''; // Очищаем поле
   }
-
-  results.push(`${amount} ${currencyText}`);
-  resultContainer.textContent = `Сумма: ${results.join(', ')}`; // Обновляем все суммы в одной строке
-  amountInput.value = '';
 });
 
 clearButton.addEventListener('click', () => {
