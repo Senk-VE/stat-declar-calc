@@ -72,7 +72,14 @@ amountInput.addEventListener('input', function (event) {
   // Заменяем запятую на точку только при вводе
   value = value.replace(',', '.');
 
-  // Оставляем ввод как есть, если он соответствует формату (с двумя знаками после запятой)
+  // Проверка на числовое значение
+  if (!/^\d*(\.\d{0,2})?$/.test(value)) {
+    alert(
+      'Введите корректное число с не более чем двумя знаками после запятой!'
+    );
+    value = value.slice(0, -1); // Удаляем последний символ, если он некорректен
+  }
+
   event.target.value = value;
 });
 
@@ -94,6 +101,12 @@ addButton.addEventListener('click', () => {
     if (decimalPart && decimalPart.length > 2) {
       allValid = false;
       alert('Каждое число должно иметь не более двух знаков после запятой!');
+    }
+
+    // Проверка на NaN
+    if (isNaN(parseFloat(amount))) {
+      allValid = false;
+      alert('Введите корректное число!');
     }
   });
 
