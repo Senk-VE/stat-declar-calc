@@ -5,6 +5,7 @@
  #bfb488 Бежевый цвет  
  */
 body {
+  /* font-family: 'Verdana', sans-serif; */
   display: flex; /* Включаем Flexbox */
   justify-content: flex-start; /* Выравниваем содержимое по горизонтали */
   align-items: center; /* Выравниваем содержимое по вертикали */
@@ -15,6 +16,7 @@ body {
   color: #f9c127; /* Ярко-желтый текст */
 }
 .nav-container {
+  font-family: 'Verdana', sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,6 +28,7 @@ body {
   background: rgba(0, 0, 0, 0.8);
   transition: all 0.4s ease-in-out;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding-right: 30px;
 }
 .nav-item-logo a {
   display: inline-block;
@@ -81,6 +84,84 @@ body {
   left: 0;
 }
 
+.nav-item-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 8px;
+}
+.toggle-bar {
+  background-color: #fff;
+  width: 35px;
+  height: 5px;
+  margin-right: 10px;
+  transition: all 0.3s ease;
+}
+.nav-container.active .toggle-bar:nth-child(1) {
+  transform: rotate(45deg) translate(9px, 9px) scale(0.8); /* Вращение, сдвиг и увеличение */
+  border-radius: 10px; /* Добавление скругления для превращения в овал */
+}
+
+.nav-container.active .toggle-bar:nth-child(2) {
+  /* transform: translateX(50px) scale(0); Скрытие с эффектом смещения и уменьшения размера */
+  opacity: 0;
+}
+
+.nav-container.active .toggle-bar:nth-child(3) {
+  transform: rotate(-45deg) translate(9px, -9px) scale(0.8); /* Вращение, сдвиг и увеличение */
+  border-radius: 10px;
+}
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+  .nav-item-menu {
+    display: none;
+  }
+
+  .nav-item-toggle {
+    display: flex;
+  }
+
+  .nav-container.active .nav-item-menu {
+    display: block;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: #333;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .nav-item-menu ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .nav-item-menu a {
+    padding: 10px 0;
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    position: relative;
+  }
+
+  .nav-container.active .nav-item-menu ul {
+    animation: slideIn 0.5s ease-out;
+  }
+}
+
+/* Slide-in Animation for Mobile Menu */
+@keyframes slideIn {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 h1 {
   margin: auto;
 }
