@@ -60,6 +60,26 @@ body {
   position: relative;
   letter-spacing: 1px;
 }
+.nav-item-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 100%;
+  width: 0%;
+  height: 2px;
+  background: #ff9800;
+  transition: width 0.3s ease, left 0.3s ease;
+  transform: translateX(0%);
+}
+.nav-item-menu a:hover {
+  color: #ff9800;
+  /* transform: scale(1.1); */
+}
+
+.nav-item-menu a:hover::after {
+  width: 100%;
+  left: 0;
+}
 
 h1 {
   margin: auto;
