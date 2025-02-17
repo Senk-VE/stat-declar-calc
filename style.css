@@ -5,7 +5,6 @@
  #bfb488 Бежевый цвет  
  */
 body {
-  /* font-family: 'Verdana', sans-serif; */
   display: flex; /* Включаем Flexbox */
   justify-content: flex-start; /* Выравниваем содержимое по горизонтали */
   align-items: center; /* Выравниваем содержимое по вертикали */
@@ -14,7 +13,15 @@ body {
   margin: 0;
   padding: 0;
   color: #f9c127; /* Ярко-желтый текст */
+  overflow-x: hidden;
 }
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Отключить горизонтальную прокрутку */
+}
+
 .nav-container {
   font-family: 'Verdana', sans-serif;
   display: flex;
@@ -76,7 +83,6 @@ body {
 }
 .nav-item-menu a:hover {
   color: #ff9800;
-  /* transform: scale(1.1); */
 }
 
 .nav-item-menu a:hover::after {
@@ -195,6 +201,7 @@ h1 {
   font-size: 24px;
   margin-bottom: 20px;
   font-weight: 500;
+  width: 100%;
 }
 
 input[type='date'] {
@@ -208,51 +215,34 @@ input[type='date'] {
 }
 
 .result {
-  margin-top: 15px;
+  margin-top: 17px;
   font-size: 16px;
   font-family: Arial, sans-serif;
   font-weight: 700;
   color: #262f40; /* Темно-синий цвет текста результата */
 }
 
-/* Контейнер для поля суммы и валюты (расположение в одну строку) */
-.input-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px; /* Отступ между полями */
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-#amount {
-  flex: 1;
-  max-width: 90%;
+#amount,
+#currencySelect {
+  display: inline-block;
   padding: 3%;
   font-size: 16px;
   border: 1px solid #889bbf;
   border-radius: 6px;
 }
-
+#amount {
+  width: 60%;
+}
 #currencySelect {
-  flex: 1;
-  max-width: 10%;
-  padding: 3%;
-  border: 1px solid #889bbf;
-  border-radius: 6px;
-  font-size: 15.5px;
-  width: auto; /* Автоматическая ширина */
-  min-width: 100px; /* Минимальная ширина */
-  max-width: 140px; /* Максимальная ширина */
-  white-space: nowrap; /* Запрещает перенос строк */
+  width: 32.5%;
 }
 
 /* Выравниваем кнопки */
 .button-container {
   display: flex;
   justify-content: center;
-  gap: 10px; /* Расстояние между кнопками */
-  margin-top: 10px; /* Отступ сверху от поля ввода */
+  gap: 20px; /* Расстояние между кнопками */
+  margin-top: 10px;
 }
 
 /* Стили для всех кнопок "Добавить", "Очистить", "Подтвердить", чтобы они стали идентичными */
@@ -289,9 +279,9 @@ button:hover,
   font-size: 1.2rem;
   font-weight: bold;
   color: #1e3a5f;
-  margin-top: 30px;
+  margin-top: 10px;
   background-color: #e4edf8;
-  padding: 0.3rem;
+  padding: 0.2rem;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -302,7 +292,7 @@ button:hover,
   font-size: 1.2rem;
   font-weight: bold;
   margin-top: 0.1rem;
-  padding: 0.3rem;
+  padding: 0.2rem;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -324,12 +314,5 @@ button:hover,
 
   h1 {
     font-size: 20px; /* Уменьшаем размер заголовков */
-  }
-
-  /* Уменьшаем размеры текста для других элементов */
-  .result,
-  #amount,
-  #currencySelect {
-    font-size: 14px;
   }
 }
