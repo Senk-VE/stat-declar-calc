@@ -119,56 +119,6 @@ html {
   border-radius: 10px;
 }
 
-/* Media Query for Mobile */
-@media (max-width: 1032px) {
-  .nav-item-menu {
-    display: none;
-  }
-
-  .nav-item-toggle {
-    display: flex;
-  }
-
-  .nav-container.active .nav-item-menu {
-    display: block;
-    position: absolute;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    background: #333;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-  }
-
-  .nav-item-menu ul {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .nav-item-menu a {
-    padding: 10px 0;
-    font-size: 20px;
-    letter-spacing: 2px;
-    text-decoration: none;
-    position: relative;
-  }
-
-  .nav-container.active .nav-item-menu ul {
-    animation: slideIn 0.5s ease-out;
-  }
-}
-
-/* Slide-in Animation for Mobile Menu */
-@keyframes slideIn {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
 h1 {
   margin: auto;
 }
@@ -221,7 +171,6 @@ h1 {
   width: 100%;
   margin-bottom: 20px;
 }
-
 .container_01 h1,
 .container_02 h1 {
   color: #262f40; /* Темно-синий заголовок */
@@ -230,7 +179,19 @@ h1 {
   font-weight: 500;
   width: 100%;
 }
-
+.container_03 {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  margin-top: 100px;
+  padding: 30px;
+  border-radius: 8px;
+  width: 70%;
+  max-width: 75%;
+}
+.container_03 p {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-align: justify;
+}
 input[type='date'] {
   width: 100%;
   padding: 12px;
@@ -332,6 +293,58 @@ button:hover,
 .total-byn {
   background-color: rgba(181, 220, 151, 0.5);
   color: #4a5d3b; /* Темно-зеленый цвет для текста, чтобы создать контраст */
+}
+/* Media Query for Mobile */
+@media (max-width: 1032px) {
+  .nav-item-menu {
+    display: none;
+  }
+
+  .nav-item-toggle {
+    display: flex;
+  }
+
+  .nav-container.active .nav-item-menu {
+    display: block;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: #333;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .nav-item-menu ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .nav-item-menu a {
+    padding: 10px 0;
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    position: relative;
+  }
+
+  .nav-container.active .nav-item-menu ul {
+    animation: slideIn 0.5s ease-out;
+  }
+  .container_03 {
+      width: 100%;
+}
+
+/* Slide-in Animation for Mobile Menu */
+@keyframes slideIn {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 @media (max-width: 768px) {
   body {

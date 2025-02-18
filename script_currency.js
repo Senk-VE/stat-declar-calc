@@ -126,7 +126,7 @@ addButton.addEventListener('click', () => {
     // Автоматическая прокрутка вниз
     setTimeout(() => {
       resultContainer.scrollTop = resultContainer.scrollHeight;
-    }, 100); // Убедимся, что обновления отработаны
+    }, 100); // Убедимся, что обновления отработаны ... проверено не работает.
   }
 });
 
