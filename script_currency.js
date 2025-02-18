@@ -162,22 +162,23 @@ doneButton.addEventListener('click', async () => {
     if (exchangeRate !== null) {
       // Конвертируем сумму в BYN
       let amountInBYN = parseFloat(amount) * exchangeRate;
-      amountInBYN = Math.round(amountInBYN * 100) / 100; // Округляем до 2 знаков
+      amountInBYN = Math.round(amountInBYN * 100) / 100; // Округляем сразу после пересчета
 
       // Добавляем в общую сумму в BYN
       totalBYN += amountInBYN;
+      totalBYN = Math.round(totalBYN * 100) / 100; // Округляем общую сумму
 
       // Теперь переводим в EUR и USD
       const eurRate = await fetchEURRate(date);
       if (eurRate !== null) {
         totalEUR += amountInBYN / eurRate;
-        totalEUR = Math.round(totalEUR * 100) / 100; // Округляем до 2 знаков
+        totalEUR = Math.round(totalEUR * 100) / 100; // Округляем для EUR
       }
 
       const usdRate = await fetchExchangeRate('USD', date);
       if (usdRate !== null) {
         totalUSD += amountInBYN / usdRate;
-        totalUSD = Math.round(totalUSD * 100) / 100; // Округляем до 2 знаков
+        totalUSD = Math.round(totalUSD * 100) / 100; // Округляем для USD
       }
     }
   }
