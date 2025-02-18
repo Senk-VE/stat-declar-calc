@@ -203,9 +203,4 @@ doneButton.addEventListener('click', async () => {
   } else {
     resultContainer.innerHTML += `<p class="total-byn">Итого: ${totalBYN} BYN</p>`;
   }
-
-  // Автоматическая прокрутка вниз
-  setTimeout(() => {
-    resultContainer.scrollTop = resultContainer.scrollHeight;
-  }, 100);
 });

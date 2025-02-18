@@ -15,8 +15,8 @@
         <div class="nav-item nav-item-menu" id="nav-menu">
           <ul>
             <li><a href="calc.html">Расчет срока ИМ СД</a></li>
-            <li><a href="currency.html">Конвертор валют СД</a></li>
-            <li><a href="#">О приложении</a></li>
+          <li><a href="currency.html">Конвертор валют СД</a></li>
+          <li><a href="#">О приложении</a></li>
         </ul>
         </div>
         <div class="nav-item nav-item-toggle" id="nav-toggle" >
@@ -26,14 +26,15 @@
         </div>
         
     </header>
+    <script src="calc.js"></script>
     <script src="toggle.js"></script>
 
     <div class="container_01">
-      <h1>Для начала работы с приложением выберите один из разделов.</h1>
-    <p><a href="calc.html">Расчет срока ИМ СД</p>
-    <p><a href="currency.html">Конвертор валют СД</p>
+      <h1>Выберите дату поступления:</h1>
+      <input type="date" id="dateInput" min="2024-01-01" max="2025-12-31" />
+      <!-- для периода с 2026 года необходимо корректировать "calc.js" путем добавления выходных дней и переносов -->
+      <button onclick="displayDate()">Подтвердить</button>
+      <div class="result" id="result"></div>
     </div>
-
-    <script src="script_currency.js"></script>
   </body>
 </html>

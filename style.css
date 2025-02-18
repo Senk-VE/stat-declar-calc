@@ -36,6 +36,7 @@ html {
   transition: all 0.4s ease-in-out;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   padding-right: 30px;
+  height: 54px;
 }
 .nav-item-logo a {
   display: inline-block;
@@ -119,7 +120,7 @@ html {
 }
 
 /* Media Query for Mobile */
-@media (max-width: 768px) {
+@media (max-width: 1032px) {
   .nav-item-menu {
     display: none;
   }
@@ -172,7 +173,7 @@ h1 {
   margin: auto;
 }
 .container_01 {
-  margin-top: 70px;
+  margin-top: 100px;
   background-color: #ffffff;
   padding: 30px;
   padding-bottom: 70px;
@@ -184,7 +185,33 @@ h1 {
   margin-bottom: 20px;
   height: 150px;
 }
+.container_01 p {
+  font-family: 'Verdana', sans-serif;
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #262f40;
+  font-weight: 900;
+}
+
+.container_01 a {
+  color: #ebb01a;
+  text-decoration: none;
+  font-weight: 900;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.container_01 a:hover {
+  color: #9c3d1e;
+  transform: scale(1.05);
+}
+
+.container_01 a:active {
+  color: #ff5722;
+  transform: scale(0.98);
+}
+
 .container_02 {
+  margin-top: 100px;
   background-color: #ffffff;
   padding: 30px;
   border-radius: 8px;
@@ -231,10 +258,10 @@ input[type='date'] {
   border-radius: 6px;
 }
 #amount {
-  width: 60%;
+  width: 55%;
 }
 #currencySelect {
-  width: 32.5%;
+  width: 35%;
 }
 
 /* Выравниваем кнопки */

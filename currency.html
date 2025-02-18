@@ -15,8 +15,8 @@
         <div class="nav-item nav-item-menu" id="nav-menu">
           <ul>
             <li><a href="calc.html">Расчет срока ИМ СД</a></li>
-            <li><a href="currency.html">Конвертор валют СД</a></li>
-            <li><a href="#">О приложении</a></li>
+          <li><a href="currency.html">Конвертор валют СД</a></li>
+          <li><a href="#">О приложении</a></li>
         </ul>
         </div>
         <div class="nav-item nav-item-toggle" id="nav-toggle" >
@@ -28,10 +28,23 @@
     </header>
     <script src="toggle.js"></script>
 
-    <div class="container_01">
-      <h1>Для начала работы с приложением выберите один из разделов.</h1>
-    <p><a href="calc.html">Расчет срока ИМ СД</p>
-    <p><a href="currency.html">Конвертор валют СД</p>
+    <div class="container_02">
+      <h1>Выберите дату курса валют:</h1>
+      <input type="date" id="dateInputConverter" min="2016-07-01" />
+      <input type="text" id="amount" placeholder="Введите сумму" />
+
+      <select id="currencySelect">
+        <option value="USD">USD (840)</option>
+        <option value="EUR">EUR (978)</option>
+        <option value="RUR">RUR (643)</option>
+        <option value="BYN">BYN (933)</option>
+      </select>
+      <div class="button-container">
+        <button id="addButton">Добавить</button>
+        <button id="clearButton">Очистить</button>
+        <button id="doneButton">✔️</button>
+      </div>
+      <div id="resultContainer"></div>
     </div>
 
     <script src="script_currency.js"></script>
