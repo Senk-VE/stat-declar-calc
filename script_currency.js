@@ -14,10 +14,6 @@ const currencyIds = {
   BYN: 1, // Не требует API
 };
 
-function roundToTwo(value) {
-  return Math.round(value * 100) / 100;
-}
-
 async function fetchExchangeRate(currency, date) {
   if (currency === 'BYN') return 1; // BYN не требует конвертации
 
@@ -77,7 +73,7 @@ amountInput.addEventListener('input', function (event) {
   value = value.replace(',', '.');
 
   // Проверка на числовое значение
-  if (!/^\d*(\.?\d{0,2})?$/.test(value)) {
+  if (!/^\d*(\.\d{0,2})?$/.test(value)) {
     alert(
       'Введите корректное число с не более чем двумя знаками после запятой!'
     );
@@ -126,6 +122,9 @@ addButton.addEventListener('click', () => {
 
     resultContainer.textContent = `Сумма: ${results.join(', ')}`;
     amountInput.value = ''; // Очищаем поле
+
+    // Автоматическая прокрутка вниз
+    resultContainer.scrollTop = resultContainer.scrollHeight;
   }
 });
 
@@ -161,20 +160,22 @@ doneButton.addEventListener('click', async () => {
     if (exchangeRate !== null) {
       // Конвертируем сумму в BYN
       let amountInBYN = parseFloat(amount) * exchangeRate;
-      amountInBYN = roundToTwo(amountInBYN); // Округляем до 2 знаков
+      amountInBYN = Math.round(amountInBYN * 100) / 100; // Округляем до 2 знаков
 
       // Добавляем в общую сумму в BYN
-      totalBYN = roundToTwo(totalBYN + amountInBYN);
+      totalBYN += amountInBYN;
 
       // Теперь переводим в EUR и USD
       const eurRate = await fetchEURRate(date);
       if (eurRate !== null) {
-        totalEUR = roundToTwo(totalEUR + amountInBYN / eurRate);
+        totalEUR += amountInBYN / eurRate;
+        totalEUR = Math.round(totalEUR * 100) / 100; // Округляем до 2 знаков
       }
 
       const usdRate = await fetchExchangeRate('USD', date);
       if (usdRate !== null) {
-        totalUSD = roundToTwo(totalUSD + amountInBYN / usdRate);
+        totalUSD += amountInBYN / usdRate;
+        totalUSD = Math.round(totalUSD * 100) / 100; // Округляем до 2 знаков
       }
     }
   }
@@ -185,25 +186,22 @@ doneButton.addEventListener('click', async () => {
   let totalUSDResult = document.querySelector('.total-usd'); // Для USD
 
   if (totalEURResult) {
-    totalEURResult.textContent = `Итого: ${totalEUR.toFixed(2)} EUR`;
+    totalEURResult.textContent = `Итого: ${totalEUR} EUR`;
   } else {
-    resultContainer.innerHTML += `<p class="total-eur">Итого: ${totalEUR.toFixed(
-      2
-    )} EUR</p>`;
+    resultContainer.innerHTML += `<p class="total-eur">Итого: ${totalEUR} EUR</p>`;
   }
   // Добавляем результат для USD
   if (totalUSDResult) {
-    totalUSDResult.textContent = `Итого: ${totalUSD.toFixed(2)} USD`;
+    totalUSDResult.textContent = `Итого: ${totalUSD} USD`;
   } else {
-    resultContainer.innerHTML += `<p class="total-usd">Итого: ${totalUSD.toFixed(
-      2
-    )} USD</p>`;
+    resultContainer.innerHTML += `<p class="total-usd">Итого: ${totalUSD} USD</p>`;
   }
   if (totalBYNResult) {
-    totalBYNResult.textContent = `Итого: ${totalBYN.toFixed(2)} BYN`;
+    totalBYNResult.textContent = `Итого: ${totalBYN} BYN`;
   } else {
-    resultContainer.innerHTML += `<p class="total-byn">Итого: ${totalBYN.toFixed(
-      2
-    )} BYN</p>`;
+    resultContainer.innerHTML += `<p class="total-byn">Итого: ${totalBYN} BYN</p>`;
   }
+
+  // Автоматическая прокрутка вниз
+  resultContainer.scrollTop = resultContainer.scrollHeight;
 });
