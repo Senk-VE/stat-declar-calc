@@ -124,7 +124,9 @@ addButton.addEventListener('click', () => {
     amountInput.value = ''; // Очищаем поле
 
     // Автоматическая прокрутка вниз
-    resultContainer.scrollTop = resultContainer.scrollHeight;
+    setTimeout(() => {
+      resultContainer.scrollTop = resultContainer.scrollHeight;
+    }, 100); // Убедимся, что обновления отработаны
   }
 });
 
@@ -203,5 +205,7 @@ doneButton.addEventListener('click', async () => {
   }
 
   // Автоматическая прокрутка вниз
-  resultContainer.scrollTop = resultContainer.scrollHeight;
+  setTimeout(() => {
+    resultContainer.scrollTop = resultContainer.scrollHeight;
+  }, 100);
 });
