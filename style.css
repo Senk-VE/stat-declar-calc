@@ -191,7 +191,14 @@ h1 {
 .container_03 p {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-align: justify;
-}
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  }
+  .container_03 h2 {
+    color: #f9c127;
+    text-align:center;
+  }
 input[type='date'] {
   width: 100%;
   padding: 12px;
