@@ -133,7 +133,7 @@ h1 {
   max-width: 400px;
   width: 100%;
   margin-bottom: 20px;
-  height: 150px;
+  /* height: 150px; */
 }
 .container_01 p {
   font-family: 'Verdana', sans-serif;
