@@ -182,7 +182,7 @@ h1 {
 .container_03 {
   background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
-  margin-top: 100px;
+  margin-top: 70px;
   padding: 30px;
   border-radius: 8px;
   width: 70%;
@@ -355,7 +355,7 @@ button:hover,
 }
 @media (max-width: 768px) {
   body {
-    padding: 0 10px;
+    /* padding: 0 10px; */
     justify-content: flex-start;
   }
 
