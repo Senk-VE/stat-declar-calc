@@ -194,13 +194,13 @@ h1 {
   font-size: 16px;
   font-weight: 600;
   line-height: 1.5;
-  }
-  .container_03 h2 {
-    color: #f9c127;
-    text-align:center;
-  }
+}
+.container_03 h2 {
+  color: #f9c127;
+  text-align: center;
+}
 input[type='date'] {
-  width: 100%;
+  width: 92.8%;
   padding: 12px;
   border: 1px solid #889bbf; /* Светло-синий цвет границы */
   border-radius: 6px;
@@ -226,7 +226,7 @@ input[type='date'] {
   border-radius: 6px;
 }
 #amount {
-  width: 55%;
+  width: 50%;
 }
 #currencySelect {
   width: 35%;
@@ -340,8 +340,13 @@ button:hover,
   .nav-container.active .nav-item-menu ul {
     animation: slideIn 0.5s ease-out;
   }
+  .container_01 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
   .container_03 {
-      width: 100%;
+    width: 100%;
+  }
 }
 
 /* Slide-in Animation for Mobile Menu */
