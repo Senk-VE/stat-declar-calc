@@ -79,7 +79,9 @@ html {
   width: 0%;
   height: 2px;
   background: #ff9800;
-  transition: width 0.3s ease, left 0.3s ease;
+  transition:
+    width 0.3s ease,
+    left 0.3s ease;
   transform: translateX(0%);
 }
 .nav-item-menu a:hover {
@@ -147,7 +149,9 @@ h1 {
   color: #ebb01a;
   text-decoration: none;
   font-weight: 900;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .container_01 a:hover {
@@ -368,3 +372,39 @@ button:hover,
     font-size: 20px; /* Уменьшаем размер заголовков */
   }
 }
+
+.xml-output {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: rgba(250, 242, 214, 0.5);
+  font-family: 'times New Roman', sans-serif
+  font-size: 1 rem;
+  font-weight: bold;
+  margin: 0.1rem;
+  padding: 0.8rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: rgba(250, 242, 214, 0.5);
+  color: #2a3d3f;
+}
+
+.icon-btn {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+}
+
+.icon-btn:hover {
+  display: inline-block;
+  transform: scale(1.25);
+}
+.icon-btn:active {
+  transform: scale(0.95);
+}
+

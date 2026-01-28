@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XML → PDF / ZIP</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="./favicon/favicon.ico" />
+  </head>
+
+  <body>
+    <header class="nav-container">
+      <div class="nav-item nav-item-logo">
+        <a href="index.html">stat💡helper</a>
+      </div>
+      <div class="nav-item nav-item-menu" id="nav-menu">
+        <ul>
+          <li><a href="calc.html">Расчет срока ИМ СД</a></li>
+          <li><a href="currency.html">Конвертор валют СД</a></li>
+          <li><a href="base64-converter.html">Извлечь файлы из XML</a></li>
+          <li><a href="about.html">О приложении</a></li>
+        </ul>
+      </div>
+      <div class="nav-item nav-item-toggle" id="nav-toggle">
+        <div class="toggle-bar toggle-bar-top"></div>
+        <div class="toggle-bar toggle-bar-middle"></div>
+        <div class="toggle-bar toggle-bar-bottom"></div>
+      </div>
+    </header>
+    <script src="toggle.js"></script>
+
+    <div class="container_02">
+      <h1>Выберите файл-XML для извлечения:</h1>
+      <form id="xmlForm">
+        <label>
+          <input type="file" id="xmlInput" accept=".xml" multiple />
+        </label>
+        <button type="button" id="parseBtn">получить</button>
+      </form>
+    </div>
+
+    <div id="resultXml"></div>
+
+    <script src="base64-converter.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  </body>
+</html>
