@@ -77,22 +77,41 @@ async function extractFileFromXml() {
       // Forming the ZIP name from RegNumber with "/" replaced
       let zipFileName = (regNumber || 'documents').replace(/\//g, '-') + '.zip';
 
-      try {
-        const handle = await window.showSaveFilePicker({
-          suggestedName: zipFileName,
-          types: [
-            {
-              description: 'ZIP Files',
-              accept: { 'application/zip': ['.zip'] },
-            },
-          ],
-        });
-        const writable = await handle.createWritable();
-        await writable.write(zipBlob);
-        await writable.close();
-      } catch (err) {
-        console.warn('Сохранение отменено пользователем.');
-      }
+      await saveZipCrossBrowser(zipBlob, zipFileName);
     });
   }
+}
+async function saveZipCrossBrowser(blob, fileName) {
+  if ('showSaveFilePicker' in window) {
+    try {
+      const handle = await window.showSaveFilePicker({
+        suggestedName: fileName,
+        types: [
+          {
+            description: 'ZIP Files',
+            accept: { 'application/zip': ['.zip'] },
+          },
+        ],
+      });
+
+      const writable = await handle.createWritable();
+      await writable.write(blob);
+      await writable.close();
+      return;
+    } catch (err) {
+      console.warn('Сохранение отменено пользователем');
+      return;
+    }
+  }
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = fileName;
+
+  document.body.appendChild(a);
+  a.click();
+
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 }
